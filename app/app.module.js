@@ -12,4 +12,10 @@ angular.module('myApp', [
 .controller('ApplicationController',
 function ($scope) {
 	$scope.header = "I'm Bored...";
+	$scope.whatToDo = "";
+
+	$scope.whatDo = function(){
+		$scope.whatToDo = "You should build a website.";
+	};
+
 });
