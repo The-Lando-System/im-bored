@@ -10,12 +10,27 @@ angular.module('myApp', [
 }])
 
 .controller('ApplicationController',
-function ($scope) {
+function ($scope,$http) {
 	$scope.header = "I'm Bored...";
 	$scope.whatToDo = "";
 
 	$scope.whatDo = function(){
-		$scope.whatToDo = "You should build a website.";
+		$http.get('/all-what-to-dos').success(function(data) {
+			var randomIndex = randomInt(0,data.length);
+
+			while (data[randomIndex].description === $scope.whatToDo) {
+				randomIndex = randomInt(0,data.length);
+			}
+
+  	  		$scope.whatToDo = data[randomIndex].description;
+  		});
 	};
+
+	var randomInt = function(minNum,maxNum){
+		return Math.floor((Math.random() * (maxNum-minNum))) + minNum;
+	};
+
+	// insert data
+	// db.whatToDos.insert( { "description": "Build a website", "dateAdded": ISODate("2015-08-28T00:00:00Z") } )
 
 });
