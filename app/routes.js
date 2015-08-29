@@ -17,5 +17,18 @@ router.get('/all-what-to-dos', function(req,res){
 	});
 });
 
+/*
+ * POST to add a new what-to-do
+ */
+router.post('/add-what-to-do', function(req,res){
+	var db = req.db;
+	db.collection('whatToDos').insert(req.body, function(err,result){
+		res.send(
+			(err === null) ? { msg: '' } : { msg: err } 
+		);
+	});
+});
+
+
 
 module.exports = router;
