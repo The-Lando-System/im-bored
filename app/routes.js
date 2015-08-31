@@ -2,8 +2,19 @@ var express = require('express');
 var path = require('path');
 var router = express.Router();
 
+/*
+ * Serve the static pages
+ */
 router.get('/', function(req, res) {
   res.sendFile(path.join(__dirname,'index.html'));
+});
+
+router.get('/main', function(req, res) {
+  res.sendFile(path.join(__dirname + '/main/','main.html'));
+});
+
+router.get('/my-list', function(req, res) {
+  res.sendFile(path.join(__dirname + '/my-list/', 'my-list.html'));
 });
 
 

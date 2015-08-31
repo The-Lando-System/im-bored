@@ -1,0 +1,26 @@
+<div class="jumbotron">
+  <div class="container">
+    <h1>{{header}}</h1>
+    <button type="button" class="btn btn-success btn-lg" ng-click="whatDo()">What should I do?</button>
+    <button type="button" class="btn btn-default btn-lg" ng-click="modal()">Add new idea</button>
+  </div>
+</div>
+<div class="row">
+  <div class="container">
+    <h2><em>You should:</em></h2>
+    <h2>{{whatToDo}}</h2>
+  </div>
+</div>
+
+<modal title="What is there to do?" visible="showModal">
+  <div ng-controller="AddNewItemModalController">
+    <div class="row">
+      <div class="container">
+        <input id="newToDo" type="text" class="form-control" style="max-width:300px" placeholder="Add a new idea here" ng-model="newDesc"/>
+      </div>
+    </div>
+    <div class="row" style="padding-top:20px; padding-left:0px; text-align:center;">
+      <button type="button" class="btn btn-primary btn-lg" ng-click="addNew()">Add it to the list</button>
+    </div>
+  </div>
+</modal>

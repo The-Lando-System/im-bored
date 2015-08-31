@@ -1,0 +1,14 @@
+/*
+ * CSS for the main page
+ *
+ */
+
+.jumbotron {
+  background: #1A1A1A;
+  color: white;
+  text-align: center;
+}
+
+.row {
+  text-align: center;
+}
