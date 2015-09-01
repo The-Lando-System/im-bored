@@ -12,3 +12,17 @@
 .row {
   text-align: center;
 }
+
+.links {
+  margin-bottom: -50px;
+}
+
+.links .btn {
+	background: #1A1A1A;
+	color: white;
+}
+
+.links .btn:hover {
+	background: #66CCFF;
+	color: black;
+}

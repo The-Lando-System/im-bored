@@ -15,7 +15,11 @@
   <link rel="stylesheet" href="/app/app.css">
 </head>
 
-<body>
+<body ng-controller="ApplicationController">
+
+  <div class="jumbotron links">
+    <a ng-href="{{url}}" class="btn btn-default btn-lg" role="button">{{linkText}}</a>
+  </div>
 
   <div ui-view></div>
 
@@ -29,7 +33,8 @@
   <script src="/app/app.module.js"></script>
   <script src="/app/directives.js"></script>
 
-  <script src="/app/main/appController.js"></script>
+  <script src="/app/applicationController.js"></script>
+  <script src="/app/main/mainController.js"></script>
   <script src="/app/my-list/myListController.js"></script>
 </body>
 </html>

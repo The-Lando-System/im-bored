@@ -13,7 +13,7 @@ var myApp = angular.module('myApp', [
 	.state('home', {
 		url: '/',
 		templateUrl: '/main',
-		controller: 'ApplicationController'
+		controller: 'MainController'
 	})
 	.state('my-list', {
 		url: '/my-list',
