@@ -1,12 +1,32 @@
 <div class="jumbotron">
   <div class="container">
-    <h1>{{header}}</h1>
-    <button type="button" class="btn btn-success btn-lg" ng-click="login()">Login</button>
+    <div class="login">
+      <h1>{{header}}</h1>
+      <button type="button" class="btn btn-success btn-lg" ng-click="loginModal()">Login</button>
+    </div>
   </div>
 </div>
 <div class="row">
   <div class="container">
-    <h2>Don't have an account?</h2>
-    <button type="button" class="btn btn-primary btn-lg" ng-click="login()">Create Account</button>
+    <div class="createAcct">
+      <h2>Don't have an account?</h2>
+      <button type="button" class="btn btn-primary btn-lg" ng-click="createAccount()">Create Account</button>
+    </div>
   </div>
 </div>
+
+<modal title="Who are you?" visible="showLoginModal">
+  <div ng-controller="LoginController">
+    <div class="container" style="padding-left:70px;">
+      <div class="row">
+        <input type="text" class="form-control" style="max-width:200px" placeholder="username" ng-model="credentials.username"/>
+      </div>
+      <div class="row" style="padding-top:5px;">
+        <input type="password" class="form-control" style="max-width:200px" ng-model="credentials.password"/>
+      </div>
+    </div>
+    <div class="row loginModalBtn" style="padding-top:20px; padding-left:0px; text-align:center;">
+      <button type="button" class="btn btn-primary btn-lg" ng-click="login(credentials)">Login</button>
+    </div>
+  </div>
+</modal>

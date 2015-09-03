@@ -3,11 +3,13 @@
 // Declare app level module which depends on views, and components
 var myApp = angular.module('myApp', [
 	'ngRoute',
+	'ngCookies',
 	'ui.router'
 ])
 
 .config(['$urlRouterProvider','$stateProvider', function($urlRouterProvider,$stateProvider) {
-	$urlRouterProvider.otherwise('/');
+	$urlRouterProvider
+	.otherwise('/');
 
 	$stateProvider
 	.state('home', {
@@ -20,5 +22,7 @@ var myApp = angular.module('myApp', [
 		templateUrl: '/my-list',
 		controller: 'MyListController'
 	});
+
+
 
 }]);

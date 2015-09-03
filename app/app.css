@@ -20,9 +20,85 @@
 .links .btn {
 	background: #1A1A1A;
 	color: white;
+	border-color: #66CCFF;
 }
 
 .links .btn:hover {
 	background: #66CCFF;
 	color: black;
+}
+
+.whatDo .btn {
+	background: #1A1A1A;
+	color: white;
+	border-color: #66FF66;
+	margin: auto;
+}
+
+.whatDo .btn:hover {
+	background: #66FF66;
+	color: black;
+}
+
+.login .btn {
+	background: #1A1A1A;
+	color: white;
+	border-color: #66FF66;
+}
+
+.login .btn:hover {
+	background: #66FF66;
+	color: black;
+}
+
+.addWhatDo .btn {
+	background: white;
+	color: black;
+	border-color: black;
+	margin-top: 20px;
+}
+
+.addWhatDo .btn:hover {
+	background: black;
+	color: white;
+}
+
+.createAcct .btn {
+	background: white;
+	color: black;
+	border-color: black;
+	margin-top: 20px;
+}
+
+.createAcct .btn:hover {
+	background: black;
+	color: white;
+}
+
+.addWhatDoModalBtn {
+	padding-top:20px;
+	padding-left:0px;
+	text-align:center;
+}
+
+.addWhatDoModalBtn .btn {
+	background: white;
+	color: black;
+	border-color: #337ab7;
+}
+
+.addWhatDoModalBtn .btn:hover {
+	background: #337ab7;
+	color: white;
+}
+
+.loginModalBtn .btn {
+	background: white;
+	color: black;
+	border-color: #337ab7;
+}
+
+.loginModalBtn .btn:hover {
+	background: #337ab7;
+	color: white;
 }

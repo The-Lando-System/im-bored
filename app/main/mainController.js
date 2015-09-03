@@ -1,7 +1,7 @@
 myApp.controller('MainController', function ($scope,$http) {
 
 	$scope.header = "I'm Bored...";
-	$scope.whatToDo = "";
+	$scope.whatToDo = "...";
 
 	$scope.whatDo = function(){
 		$http.get('/all-what-to-dos').success(function(data) {
