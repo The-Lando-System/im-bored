@@ -30,6 +30,7 @@ myApp.controller('MainController', function ($scope,$http) {
 
 });
 
+// TO-DO : Make this a common controller for both user and global lists
 myApp.controller('AddNewItemModalController', function ($scope,$http) {
 
 
@@ -50,6 +51,7 @@ myApp.controller('AddNewItemModalController', function ($scope,$http) {
 
 		$http.post('/add-what-to-do', newWhatToDo)
 		.success(function(data, status, headers, config) {
+			alert("Successfully added new item!");
 			$scope.newDesc = "";
 			$scope.$parent.$parent.modal();
 		});

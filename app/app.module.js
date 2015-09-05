@@ -23,6 +23,4 @@ var myApp = angular.module('myApp', [
 		controller: 'MyListController'
 	});
 
-
-
 }]);

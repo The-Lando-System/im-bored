@@ -2,13 +2,25 @@
   <div class="container">
     <div class="login">
       <h1>{{header}}</h1>
-      <button type="button" class="btn btn-success btn-lg" ng-click="loginModal()">Login</button>
+      <button type="button" class="btn btn-success btn-lg" ng-click="loginModal()" ng-hide="isAuthenticated">Login</button>
+      <div class="whatDo" ng-show="isAuthenticated">
+        <button type="button" class="btn btn-success btn-lg" ng-click="whatDo()">What should I do?</button>
+      </div>
     </div>
   </div>
 </div>
 <div class="row">
   <div class="container">
-    <div class="createAcct">
+    <div class="whatDoText" ng-show="isAuthenticated">
+      <h2><em>You should:</em></h2>
+    </div>
+    <div class="whatDoText" ng-show="isAuthenticated">
+      <h2>{{whatToDo}}</h2>
+    </div>
+    <div class="addWhatDo" ng-show="isAuthenticated">
+      <button type="button" class="btn btn-default btn-lg" ng-click="addModal()">Add a new idea to your list!</button>
+    </div>
+    <div class="createAcct" ng-hide="isAuthenticated">
       <h2>Don't have an account?</h2>
       <button type="button" class="btn btn-primary btn-lg" ng-click="createAccount()">Create Account</button>
     </div>
@@ -22,11 +34,24 @@
         <input type="text" class="form-control" style="max-width:200px" placeholder="username" ng-model="credentials.username"/>
       </div>
       <div class="row" style="padding-top:5px;">
-        <input type="password" class="form-control" style="max-width:200px" ng-model="credentials.password"/>
+        <input type="password" class="form-control" style="max-width:200px" placeholder="password" ng-model="credentials.password"/>
       </div>
     </div>
     <div class="row loginModalBtn" style="padding-top:20px; padding-left:0px; text-align:center;">
       <button type="button" class="btn btn-primary btn-lg" ng-click="login(credentials)">Login</button>
+    </div>
+  </div>
+</modal>
+
+<modal title="What is there to do?" visible="showAddModal">
+  <div ng-controller="AddNewItemMyListModalController">
+    <div class="row">
+      <div class="container">
+        <input id="newToDo" type="text" class="form-control" style="max-width:300px" placeholder="Add a new idea here" ng-model="newDesc"/>
+      </div>
+    </div>
+    <div class="row addWhatDoModalBtn">
+      <button type="button" class="btn btn-primary btn-lg" ng-click="addNew()">Add it to the list</button>
     </div>
   </div>
 </modal>

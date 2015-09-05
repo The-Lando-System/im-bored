@@ -1,4 +1,4 @@
-myApp.controller('ApplicationController', function ($scope,$state) {
+myApp.controller('ApplicationController', function ($scope, $state, $cookies) {
 	
 	$scope.currState = $state;
 
