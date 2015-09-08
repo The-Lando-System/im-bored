@@ -1,14 +1,13 @@
 myApp.controller('MyListController', function ($scope,$http,AuthService) {
 
-	$scope.header = "My List";
-
+	$scope.header = !AuthService.isAuthenticated() ? "My List" : "My List - " + AuthService.getUserId();
 	$scope.whatToDo = "...";
 
 	$scope.whatDo = function(){
 		$http.get('/my-what-to-dos/' + AuthService.getUserId()).success(function(data) {
 			var randomIndex = randomInt(0,data.length);
 
-			while (data[randomIndex].description === $scope.whatToDo) {
+			while (data[randomIndex].description === $scope.whatToDo && (data.length > 1)) {
 				randomIndex = randomInt(0,data.length);
 			}
 
@@ -35,6 +34,26 @@ myApp.controller('MyListController', function ($scope,$http,AuthService) {
 
 	var randomInt = function(minNum,maxNum){
 		return Math.floor((Math.random() * (maxNum-minNum))) + minNum;
+	};
+
+	$scope.showCreateAccountModal = false;
+	$scope.createAccountModal = function(){
+		$scope.showCreateAccountModal = !$scope.showCreateAccountModal;
+	};
+
+	$scope.hideCreateAccount = function(){
+		$scope.isAuthenticated = true;
+	};
+
+	$scope.setHeader = function(header) {
+		$scope.header = header;
+	};
+
+	$scope.logout = function() {
+		AuthService.logout();
+		$scope.isAuthenticated = false;
+		$scope.header = "My List";
+		$scope.whatToDo = "...";
 	};
 
 });
@@ -66,7 +85,6 @@ myApp.controller('AddNewItemMyListModalController', function ($scope,$http,AuthS
 		
 		$http.post('/my-list/add-what-to-do', newWhatToDo)
 		.success(function(data, status, headers, config) {
-			alert("Successfully added new item!");
 			$scope.newDesc = "";
 			$scope.$parent.$parent.addModal();
 		});

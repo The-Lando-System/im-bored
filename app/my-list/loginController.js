@@ -14,10 +14,10 @@ myApp.controller('LoginController', function ($scope,$rootScope,$cookies,AuthSer
 			$scope.$parent.$parent.loginModal();
 			$scope.credentials = {username:"",password:""};
 			$scope.$parent.$parent.hideLogin();
-			alert("Hello!\nUser: " + user.id + "\nhas logged in!");
+			$scope.$parent.$parent.setHeader("My List - " + user.id);
 
 		}, function () {
-			alert("ERROR\nCould not find the user: " + credentials.username);
+			alert("Could not find user or incorrect password!");
 		});
 	};
 

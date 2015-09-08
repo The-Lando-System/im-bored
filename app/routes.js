@@ -67,6 +67,42 @@ router.post('/authenticate', function(req,res) {
 });
 
 /*
+ * POST to create a new user
+ */
+router.post('/create-account', function(req,res) {
+
+	var db = req.db;
+	db.collection('users').insert(
+	  	{
+	  		'user': {
+	  			'id':req.body.username,
+	  			'password':req.body.password
+	  		}
+	  	},
+	  	function(err,data) {
+	    	res.send(
+				(err === null) ? { msg: '' } : { msg: err } 
+			);
+	  	}
+	);
+});
+
+/*
+ * GET a username to check if the user exists
+ */
+router.get('/user-exists/:userId', function(req,res) {
+	var db = req.db;
+	var userId = req.params.userId;
+	db.collection('users').findOne({'user.id':userId},function(err,data){
+		if (data === null) {
+			res.send(false);
+		} else {
+			res.send(true);
+		}
+	});
+});
+
+/*
  * POST to add a new what-to-do to a custom user list
  */
 router.post('/my-list/add-what-to-do', function(req,res){

@@ -19,8 +19,8 @@
 
 .links .btn {
 	background: #1A1A1A;
-	color: white;
-	border-color: #66CCFF;
+	color: #66CCFF;
+	border-color: #1A1A1A;
 }
 
 .links .btn:hover {
@@ -54,24 +54,24 @@
 .addWhatDo .btn {
 	background: white;
 	color: black;
-	border-color: black;
+	border-color: #337ab7;
 	margin-top: 20px;
 }
 
 .addWhatDo .btn:hover {
-	background: black;
+	background: #337ab7;
 	color: white;
 }
 
 .createAcct .btn {
 	background: white;
 	color: black;
-	border-color: black;
+	border-color: #337ab7;
 	margin-top: 20px;
 }
 
 .createAcct .btn:hover {
-	background: black;
+	background: #337ab7;
 	color: white;
 }
 
@@ -100,5 +100,17 @@
 
 .loginModalBtn .btn:hover {
 	background: #337ab7;
+	color: white;
+}
+
+.logout .btn {
+	background: #1A1A1A;
+	border-color: #1A1A1A;
+	color: red;
+}
+
+.logout .btn:hover {
+	background: red;
+	border-color: red;
 	color: white;
 }

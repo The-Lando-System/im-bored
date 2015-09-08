@@ -1,10 +1,13 @@
 <div class="jumbotron">
   <div class="container">
+    <div class="logout" style="margin-top: -40px;">
+      <button type="button" class="btn btn-danger btn-lg" ng-click="logout()" ng-show="isAuthenticated">Logout</button>
+    </div>
     <div class="login">
       <h1>{{header}}</h1>
       <button type="button" class="btn btn-success btn-lg" ng-click="loginModal()" ng-hide="isAuthenticated">Login</button>
       <div class="whatDo" ng-show="isAuthenticated">
-        <button type="button" class="btn btn-success btn-lg" ng-click="whatDo()">What should I do?</button>
+        <button type="button" class="btn btn-success btn-lg" style="margin-top: 20px;" ng-click="whatDo()">What should I do?</button>
       </div>
     </div>
   </div>
@@ -22,7 +25,7 @@
     </div>
     <div class="createAcct" ng-hide="isAuthenticated">
       <h2>Don't have an account?</h2>
-      <button type="button" class="btn btn-primary btn-lg" ng-click="createAccount()">Create Account</button>
+      <button type="button" class="btn btn-primary btn-lg" ng-click="createAccountModal()">Create Account</button>
     </div>
   </div>
 </div>
@@ -52,6 +55,25 @@
     </div>
     <div class="row addWhatDoModalBtn">
       <button type="button" class="btn btn-primary btn-lg" ng-click="addNew()">Add it to the list</button>
+    </div>
+  </div>
+</modal>
+
+<modal title="Create your account" visible="showCreateAccountModal">
+  <div ng-controller="CreateAccountController">
+    <div class="container" style="padding-left:70px;">
+      <div class="row">
+        <input type="text" class="form-control" style="max-width:200px" placeholder="username" ng-model="newAccount.username"/>
+      </div>
+      <div class="row" style="padding-top:5px;">
+        <input type="password" class="form-control" style="max-width:200px" placeholder="password" ng-model="newAccount.password"/>
+      </div>
+      <div class="row" style="padding-top:5px;">
+        <input type="password" class="form-control" style="max-width:200px" placeholder="re-enter password" ng-model="newAccount.passwordConfirm"/>
+      </div>
+    </div>
+    <div class="row loginModalBtn" style="padding-top:20px; padding-left:0px; text-align:center;">
+      <button type="button" class="btn btn-primary btn-lg" ng-click="createAccount()">Create</button>
     </div>
   </div>
 </modal>
