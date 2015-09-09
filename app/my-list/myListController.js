@@ -4,14 +4,19 @@ myApp.controller('MyListController', function ($scope,$http,AuthService) {
 	$scope.whatToDo = "...";
 
 	$scope.whatDo = function(){
+
 		$http.get('/my-what-to-dos/' + AuthService.getUserId()).success(function(data) {
-			var randomIndex = randomInt(0,data.length);
+			
+			if (data.length > 0){
 
-			while (data[randomIndex].description === $scope.whatToDo && (data.length > 1)) {
-				randomIndex = randomInt(0,data.length);
-			}
+				var randomIndex = randomInt(0,data.length);
 
-  	  		$scope.whatToDo = data[randomIndex].description;
+				while (data[randomIndex].description === $scope.whatToDo && (data.length > 1)) {
+					randomIndex = randomInt(0,data.length);
+				}
+			
+  	  			$scope.whatToDo = data[randomIndex].description;
+  	  		}
   		});
 	};
 
@@ -50,17 +55,25 @@ myApp.controller('MyListController', function ($scope,$http,AuthService) {
 	};
 
 	$scope.logout = function() {
-		AuthService.logout();
-		$scope.isAuthenticated = false;
-		$scope.header = "My List";
-		$scope.whatToDo = "...";
+		var yes = confirm('Are you sure you want to logout?');
+		if (yes) {
+			AuthService.logout();
+			$scope.isAuthenticated = false;
+			$scope.header = "My List";
+			$scope.whatToDo = "...";
+		}
 	};
+
+	angular.element(document).ready(function () {
+        angular.element('.main-header h1').animate({'opacity': '1'},1000);
+    });
 
 });
 
 // TO-DO : Make this a common controller for both user and global lists
 myApp.controller('AddNewItemMyListModalController', function ($scope,$http,AuthService) {
 
+	$scope.newDesc = "";
 
 	$scope.addNew = function(){
 

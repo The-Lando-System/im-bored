@@ -28,11 +28,16 @@ myApp.controller('MainController', function ($scope,$http) {
 		return Math.floor((Math.random() * (maxNum-minNum))) + minNum;
 	};
 
+	angular.element(document).ready(function () {
+        angular.element('.main-header h1').animate({'opacity': '1'},1000);
+    });
+	
 });
 
 // TO-DO : Make this a common controller for both user and global lists
 myApp.controller('AddNewItemModalController', function ($scope,$http) {
 
+	$scope.newDesc = "";
 
 	$scope.addNew = function(){
 

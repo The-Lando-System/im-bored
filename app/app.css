@@ -13,6 +13,29 @@
   text-align: center;
 }
 
+/*.sample-show-hide {
+  padding:10px;
+  border:1px solid black;
+  background:white;
+}
+
+.sample-show-hide {
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+
+.sample-show-hide.ng-hide {
+  opacity:0;
+} */
+
+.main-header {
+  margin-bottom: 40px;
+}
+
+.main-header h1 {
+  opacity: 0;
+}
+
 .links {
   margin-bottom: -50px;
 }

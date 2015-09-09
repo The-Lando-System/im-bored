@@ -1,8 +1,11 @@
 <div class="jumbotron">
   <div class="container">
-    <h1>{{header}}</h1>
+  	<div class="main-header">
+      <h1>{{header}}</h1>
+    </div>
     <div class="whatDo">
-      <button type="button" class="btn btn-success btn-lg" ng-click="whatDo()">What should I do?</button>
+      <!-- <button type="button" class="btn btn-success btn-lg" ng-click="whatDo()">What should I do?</button> -->
+      <a class="btn btn-success btn-lg" ng-click="whatDo()">What should I do?</a>
     </div>
   </div>
 </div>
@@ -15,7 +18,7 @@
       <h2>{{whatToDo}}</h2>
     </div>
     <div class="addWhatDo">
-      <button type="button" class="btn btn-default btn-lg" ng-click="modal()">Add a new idea!</button>
+      <a class="btn btn-default btn-lg" ng-click="modal()">Add a new idea!</a>
     </div>
   </div>
 </div>
@@ -28,7 +31,7 @@
       </div>
     </div>
     <div class="row addWhatDoModalBtn">
-      <button type="button" class="btn btn-primary btn-lg" ng-click="addNew()">Add it to the list</button>
+      <a class="btn btn-primary btn-lg" ng-click="addNew()">Add it to the list</a>
     </div>
   </div>
 </modal>

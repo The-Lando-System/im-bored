@@ -7,6 +7,28 @@ myApp.controller('CreateAccountController', function ($scope,$rootScope,$cookies
 	};
 
 	$scope.createAccount = function() {
+
+		if ($scope.newAccount.username.trim() === ""){
+			alert('Please enter a username');
+			$scope.newAccount.username = "";
+			return;
+		}
+		if ($scope.newAccount.password.trim() === "") {
+			alert('Please enter a password');
+			$scope.newAccount.password = "";
+			return;
+		}
+		if ($scope.newAccount.passwordConfirm.trim() === ""){
+			alert('Please confirm your password');
+			$scope.newAccount.passwordConfirm = "";
+			return;
+		}
+		if ($scope.newAccount.password !== $scope.newAccount.passwordConfirm) {
+			alert("Your passwords do not match!");
+			$scope.newAccount.password = "";
+			$scope.newAccount.passwordConfirm = "";
+			return;
+		}
 	
 		// Handling for determining a unique username
 		$http.get('/user-exists/' + $scope.newAccount.username)
@@ -21,14 +43,6 @@ myApp.controller('CreateAccountController', function ($scope,$rootScope,$cookies
 				};
 				return;
 			} else {
-
-				// Confirm that the passwords match
-				if ($scope.newAccount.password !== $scope.newAccount.passwordConfirm) {
-					alert("Your passwords do not match!");
-					$scope.newAccount.password = "";
-					$scope.newAccount.passwordConfirm = "";
-					return;
-				}
 
 				// Create the user
 				AuthService.create($scope.newAccount)

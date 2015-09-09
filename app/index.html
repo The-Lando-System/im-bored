@@ -9,16 +9,18 @@
   <title>I'm Bored...</title>
 
   <!-- Styles -->
+  <link rel="icon" href="/app/lib/sleepy.ico" type="image/x-icon">
   <link rel="stylesheet" href="/app/bower_components/html5-boilerplate/dist/css/normalize.css">
   <link rel="stylesheet" href="/app/bower_components/html5-boilerplate/dist/css/main.css">
   <link rel="stylesheet" href="/app/bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="/app/lib/font-awesome-4.3.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="/app/app.css">
 </head>
 
 <body ng-controller="ApplicationController">
 
   <div class="jumbotron links">
-    <a ng-href="{{url}}" class="btn btn-default btn-lg" role="button">{{linkText}}</a>
+    <a ng-href="{{url}}" class="btn btn-default btn-lg" role="button">{{linkText}}<i class="fa fa-list" style="padding-left:10px;"></i></a>
   </div>
 
   <div ui-view></div>
@@ -30,6 +32,7 @@
   <script src="/app/bower_components/angular-route/angular-route.js"></script>
   <script src="/app/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
   <script src="/app/bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="/app/bower_components/angular-animate/angular-animate.js"></script>
   <script src="/app/bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <script src="/app/app.module.js"></script>
   <script src="/app/directives.js"></script>

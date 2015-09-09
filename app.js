@@ -22,6 +22,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname)));
+app.use(favicon(__dirname + '/app/lib/sleepy.ico'));
 
 // Set the DB based on environment
 var db;

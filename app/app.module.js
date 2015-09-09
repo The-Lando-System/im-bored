@@ -4,6 +4,7 @@
 var myApp = angular.module('myApp', [
 	'ngRoute',
 	'ngCookies',
+	'ngAnimate',
 	'ui.router'
 ])
 

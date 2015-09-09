@@ -1,14 +1,16 @@
 <div class="jumbotron">
   <div class="container">
-    <div class="logout" style="margin-top: -40px;">
-      <button type="button" class="btn btn-danger btn-lg" ng-click="logout()" ng-show="isAuthenticated">Logout</button>
+    <div class="main-header">
+      <h1>{{header}}</h1>
     </div>
     <div class="login">
-      <h1>{{header}}</h1>
-      <button type="button" class="btn btn-success btn-lg" ng-click="loginModal()" ng-hide="isAuthenticated">Login</button>
-      <div class="whatDo" ng-show="isAuthenticated">
-        <button type="button" class="btn btn-success btn-lg" style="margin-top: 20px;" ng-click="whatDo()">What should I do?</button>
-      </div>
+      <a class="btn btn-success btn-lg" ng-click="loginModal()" ng-hide="isAuthenticated">Login</a>
+    </div>
+    <div class="whatDo" ng-show="isAuthenticated">
+      <a class="btn btn-success btn-lg" style="margin-top: 20px;" ng-click="whatDo()">What should I do?</a>
+    </div>
+    <div class="logout">
+      <a class="btn btn-danger btn-lg" style="margin-top: 20px;" ng-click="logout()" ng-show="isAuthenticated"><i class="fa fa-sign-out"></i></a>
     </div>
   </div>
 </div>
@@ -21,11 +23,11 @@
       <h2>{{whatToDo}}</h2>
     </div>
     <div class="addWhatDo" ng-show="isAuthenticated">
-      <button type="button" class="btn btn-default btn-lg" ng-click="addModal()">Add a new idea to your list!</button>
+      <a class="btn btn-default btn-lg" ng-click="addModal()">Add a new idea to your list!</a>
     </div>
     <div class="createAcct" ng-hide="isAuthenticated">
       <h2>Don't have an account?</h2>
-      <button type="button" class="btn btn-primary btn-lg" ng-click="createAccountModal()">Create Account</button>
+      <a class="btn btn-primary btn-lg" ng-click="createAccountModal()">Create Account</a>
     </div>
   </div>
 </div>
@@ -41,7 +43,7 @@
       </div>
     </div>
     <div class="row loginModalBtn" style="padding-top:20px; padding-left:0px; text-align:center;">
-      <button type="button" class="btn btn-primary btn-lg" ng-click="login(credentials)">Login</button>
+      <a class="btn btn-primary btn-lg" ng-click="login()">Login</a>
     </div>
   </div>
 </modal>
@@ -54,7 +56,7 @@
       </div>
     </div>
     <div class="row addWhatDoModalBtn">
-      <button type="button" class="btn btn-primary btn-lg" ng-click="addNew()">Add it to the list</button>
+      <a class="btn btn-primary btn-lg" ng-click="addNew()">Add it to the list</a>
     </div>
   </div>
 </modal>
@@ -73,7 +75,7 @@
       </div>
     </div>
     <div class="row loginModalBtn" style="padding-top:20px; padding-left:0px; text-align:center;">
-      <button type="button" class="btn btn-primary btn-lg" ng-click="createAccount()">Create</button>
+      <a class="btn btn-primary btn-lg" ng-click="createAccount()">Create</a>
     </div>
   </div>
 </modal>

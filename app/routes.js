@@ -51,7 +51,6 @@ router.post('/authenticate', function(req,res) {
     // TO-DO: Find a better way to do error handling if no user exists
   	// If we don't find anybody in the DB, send an error 500 back
     if(data === null){
-      res.status(500);
       res.send(null);
     } else {
 

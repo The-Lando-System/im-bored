@@ -5,19 +5,30 @@ myApp.controller('LoginController', function ($scope,$rootScope,$cookies,AuthSer
 	    password: ''
   	};
 
-	$scope.login = function(credentials) {
+	$scope.login = function() {
 
-		AuthService.login(credentials)
+		if ($scope.credentials.username.trim() === ""){
+			alert('Please enter your username');
+			$scope.credentials.username = "";
+			return;
+		}
+		if ($scope.credentials.password.trim() === "") {
+			alert('Please enter your password');
+			$scope.credentials.password = "";
+			return;
+		}
+
+		AuthService.login($scope.credentials)
 		.then(function (user) {
-
-			$cookies.put('userId',user.id);
-			$scope.$parent.$parent.loginModal();
-			$scope.credentials = {username:"",password:""};
-			$scope.$parent.$parent.hideLogin();
-			$scope.$parent.$parent.setHeader("My List - " + user.id);
-
-		}, function () {
-			alert("Could not find user or incorrect password!");
+			if (user) {
+				$cookies.put('userId',user.id);
+				$scope.$parent.$parent.loginModal();
+				$scope.credentials = {username:"",password:""};
+				$scope.$parent.$parent.hideLogin();
+				$scope.$parent.$parent.setHeader("My List - " + user.id);
+			} else {
+				alert("Could not find user or incorrect password!");
+			}
 		});
 	};
 
