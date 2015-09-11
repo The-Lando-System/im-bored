@@ -24,7 +24,7 @@ myApp.controller('LoginController', function ($scope,$rootScope,$cookies,AuthSer
 				$cookies.put('userId',user.id);
 				$scope.$parent.$parent.loginModal();
 				$scope.credentials = {username:"",password:""};
-				$scope.$parent.$parent.hideLogin();
+				$scope.$parent.$parent.setAuthentication(true);
 				$scope.$parent.$parent.setHeader("My List - " + user.id);
 			} else {
 				alert("Could not find user or incorrect password!");

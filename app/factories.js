@@ -51,19 +51,15 @@ myApp.factory('WhatDoService', function ($http) {
 
 	};
 
-
-
 	whatDoService.getWhatDo = function(url,whatToDo){
 		return $http.get(url).success(function(data) {
 
 			if (data.length > 0){
 
 				var randomIndex = randomInt(0,data.length);
-
 				while (data[randomIndex].description === whatToDo && (data.length > 1)) {
 					randomIndex = randomInt(0,data.length);
 				}
-
 	  	  		whatDoService.whatToDo = data[randomIndex].description;
 
   	  		} else {

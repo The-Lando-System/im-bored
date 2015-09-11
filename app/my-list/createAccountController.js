@@ -47,19 +47,19 @@ myApp.controller('CreateAccountController', function ($scope,$rootScope,$cookies
 				// Create the user
 				AuthService.create($scope.newAccount)
 				.then(function() {
-				});
-
-				// Login as the newly created user
-				AuthService.login({
-					'username': $scope.newAccount.username,
-					'password': $scope.newAccount.password
-				})
-				.then(function(user) {
-					$cookies.put('userId',user.id);
-					$scope.$parent.$parent.createAccountModal();
-					$scope.newAccount = {username:"",password:"",passwordConfirm:""};
-					$scope.$parent.$parent.hideCreateAccount();
-					$scope.$parent.$parent.setHeader("My List - " + user.id);
+					
+					// Login as the newly created user
+					AuthService.login({
+						'username': $scope.newAccount.username,
+						'password': $scope.newAccount.password
+					})
+					.then(function(user) {
+						$cookies.put('userId',user.id);
+						$scope.$parent.$parent.createAccountModal();
+						$scope.newAccount = {username:"",password:"",passwordConfirm:""};
+						$scope.$parent.$parent.setAuthentication(true);
+						$scope.$parent.$parent.setHeader("My List - " + user.id);
+					});
 				});
 			}
 		});
