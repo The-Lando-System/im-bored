@@ -124,4 +124,15 @@ router.get('/my-what-to-dos/:userId', function(req,res){
 	});
 });
 
+/*
+ * DELETE all what to dos for a user
+ */
+router.delete('/delete-all/:userId', function(req,res){
+	var db = req.db;
+	var userId = req.params.userId;
+	db.collection('myWhatToDos').remove({'userId':userId}, function(err,result) {
+		res.send((result !== null) ? { msg: ''} : { msg: 'error: ' + err});
+	});
+});
+
 module.exports = router;

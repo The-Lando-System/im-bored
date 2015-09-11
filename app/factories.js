@@ -68,6 +68,12 @@ myApp.factory('WhatDoService', function ($http) {
   		});
 	};
 
+	whatDoService.deleteAllWhatDos = function(url){
+		return $http.delete(url).success(function(data) {
+			
+  		});
+	};
+
 	var randomInt = function(minNum,maxNum){
 		return Math.floor((Math.random() * (maxNum-minNum))) + minNum;
 	};

@@ -31,6 +31,14 @@ myApp.controller('MyListController', function ($scope,$http,AuthService,WhatDoSe
 		$scope.manageModal();
 	};
 
+	$scope.deleteList = function() {
+		WhatDoService.deleteAllWhatDos('/delete-all/' + AuthService.getUserId())
+		.then(function(){
+			$scope.whatToDo = "...";
+			$scope.manageModal();
+		});
+	};
+
 	$scope.setAuthentication = function(isAuth){
 		$scope.isAuthenticated = isAuth;
 	};
@@ -81,10 +89,15 @@ myApp.controller('AddNewItemMyListModalController', function ($scope,$http,AuthS
 
 myApp.controller('ManageModalController', function ($scope,$http,AuthService,WhatDoService) {
 	$scope.logout = function() {
-		var yes = confirm('Are you sure you want to logout?');
+		// Call the parent controller logout function
+		$scope.$parent.$parent.logout();
+	};
+
+	$scope.deleteList = function() {
+		var yes = confirm('Are you sure you want to delete your list?');
 		if (yes) {
 			// Call the parent controller logout function
-			$scope.$parent.$parent.logout();
+			$scope.$parent.$parent.deleteList();
 		}
 	};
 });
