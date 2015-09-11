@@ -13,21 +13,6 @@
   text-align: center;
 }
 
-/*.sample-show-hide {
-  padding:10px;
-  border:1px solid black;
-  background:white;
-}
-
-.sample-show-hide {
-  -webkit-transition:all linear 0.5s;
-  transition:all linear 0.5s;
-}
-
-.sample-show-hide.ng-hide {
-  opacity:0;
-} */
-
 .main-header {
   margin-bottom: 40px;
 }
@@ -127,13 +112,41 @@
 }
 
 .logout .btn {
-	background: #1A1A1A;
-	border-color: #1A1A1A;
+	background: white;
+	border-color: white;
 	color: red;
+	/* margin-left: 80px; */
 }
 
 .logout .btn:hover {
 	background: red;
 	border-color: red;
+	color: white;
+	/* margin-left: 80px;  */
+}
+
+.delete-list .btn {
+	background: white;
+	border-color: white;
+	color: #66CCFF;
+	/* margin-left: 80px; */
+}
+
+.delete-list .btn:hover {
+	background: #66CCFF;
+	border-color: #66CCFF;
+	color: white;
+	/* margin-left: 80px; */
+}
+
+.manage .btn {
+	background: #1A1A1A;
+	border-color: #1A1A1A;
+	color: gray;
+}
+
+.manage .btn:hover {
+	background: gray;
+	border-color: gray;
 	color: white;
 }

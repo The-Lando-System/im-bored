@@ -6,12 +6,17 @@
     <div class="login">
       <a class="btn btn-success btn-lg" ng-click="loginModal()" ng-hide="isAuthenticated">Login</a>
     </div>
-    <div class="whatDo" ng-show="isAuthenticated">
-      <a class="btn btn-success btn-lg" style="margin-top: 20px;" ng-click="whatDo()">What should I do?</a>
-    </div>
-    <div class="logout">
-      <a class="btn btn-danger btn-lg" style="margin-top: 20px;" ng-click="logout()" ng-show="isAuthenticated"><i class="fa fa-sign-out"></i></a>
-    </div>
+      <div class="col-md-5"></div>
+      <div class="col-md-2">
+        <div class="whatDo" style="margin-left:-10px;" ng-show="isAuthenticated">
+          <a class="btn btn-success btn-lg" ng-click="whatDo()">What should I do?</a>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="manage" style="float:left;" >
+          <a class="btn btn-danger btn-lg" ng-click="manageModal()" ng-show="isAuthenticated"><i class="fa fa-pencil-square-o"></i></a>
+        </div>
+      </div>
   </div>
 </div>
 <div class="row">
@@ -52,7 +57,7 @@
   <div ng-controller="AddNewItemMyListModalController">
     <div class="row">
       <div class="container">
-        <input id="newToDo" type="text" class="form-control" style="max-width:300px" placeholder="Add a new idea here" ng-model="newDesc"/>
+        <input id="newToDo" type="text" class="form-control" style="max-width:300px" placeholder="Add a new idea here" ng-model="newWhatToDo.description"/>
       </div>
     </div>
     <div class="row addWhatDoModalBtn">
@@ -76,6 +81,21 @@
     </div>
     <div class="row loginModalBtn" style="padding-top:20px; padding-left:0px; text-align:center;">
       <a class="btn btn-primary btn-lg" ng-click="createAccount()">Create</a>
+    </div>
+  </div>
+</modal>
+
+<modal title="Manage your list" visible="showManageModal">
+  <div ng-controller="ManageModalController">
+    <div class="container">
+      <div class="row" style="text-align:left;">
+        <div class="logout">
+          <a class="btn btn-lg" ng-click="logout()">Logout<i style="padding-left:10px;" class="fa fa-sign-out"></i></a>
+        </div>
+        <div class="delete-list">
+          <a class="btn btn-lg" ng-click="deleteList()">Delete List<i style="padding-left:10px;" class="fa fa-trash-o"></i></a>
+        </div>
+      </div>
     </div>
   </div>
 </modal>

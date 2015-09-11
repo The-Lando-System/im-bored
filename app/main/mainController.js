@@ -1,18 +1,13 @@
-myApp.controller('MainController', function ($scope,$http) {
+myApp.controller('MainController', function ($scope,$http,WhatDoService) {
 
 	$scope.header = "I'm Bored...";
 	$scope.whatToDo = "...";
 
 	$scope.whatDo = function(){
-		$http.get('/all-what-to-dos').success(function(data) {
-			var randomIndex = randomInt(0,data.length);
-
-			while (data[randomIndex].description === $scope.whatToDo) {
-				randomIndex = randomInt(0,data.length);
-			}
-
-  	  		$scope.whatToDo = data[randomIndex].description;
-  		});
+		WhatDoService.getWhatDo('/all-what-to-dos',$scope.whatToDo)
+		.then(function(){
+			$scope.whatToDo = WhatDoService.whatToDo;
+		});
 	};
 
 	$scope.$on('closeModal', function(event, args) {
@@ -34,33 +29,19 @@ myApp.controller('MainController', function ($scope,$http) {
 	
 });
 
-// TO-DO : Make this a common controller for both user and global lists
-myApp.controller('AddNewItemModalController', function ($scope,$http) {
+myApp.controller('AddNewItemModalController', function ($scope,$http,WhatDoService) {
 
-	$scope.newDesc = "";
+	$scope.newWhatToDo = {
+		description: "",
+		dateAdded: ""
+	};
 
 	$scope.addNew = function(){
-
-		if ($scope.newDesc.trim() === "") {
-			alert("Please add a description.");
-			$scope.newDesc = "";
-			return;
-		}
-
-		var today = new Date();
-
-		var newWhatToDo = {
-			description: $scope.newDesc.trim(),
-			dateAdded: today.toISOString()
-		};
-
-		$http.post('/add-what-to-do', newWhatToDo)
-		.success(function(data, status, headers, config) {
-			alert("Successfully added new item!");
-			$scope.newDesc = "";
+		WhatDoService.addNewWhatDo('/add-what-to-do',$scope.newWhatToDo)
+		.then(function(){
+			$scope.newWhatToDo.description = "";
 			$scope.$parent.$parent.modal();
 		});
-
 	};
 
 });

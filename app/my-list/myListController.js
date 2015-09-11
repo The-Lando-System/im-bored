@@ -1,28 +1,23 @@
-myApp.controller('MyListController', function ($scope,$http,AuthService) {
+myApp.controller('MyListController', function ($scope,$http,AuthService,WhatDoService) {
 
 	$scope.header = !AuthService.isAuthenticated() ? "My List" : "My List - " + AuthService.getUserId();
 	$scope.whatToDo = "...";
 
 	$scope.whatDo = function(){
-
-		$http.get('/my-what-to-dos/' + AuthService.getUserId()).success(function(data) {
-			
-			if (data.length > 0){
-
-				var randomIndex = randomInt(0,data.length);
-
-				while (data[randomIndex].description === $scope.whatToDo && (data.length > 1)) {
-					randomIndex = randomInt(0,data.length);
-				}
-			
-  	  			$scope.whatToDo = data[randomIndex].description;
-  	  		}
-  		});
+		WhatDoService.getWhatDo('/my-what-to-dos/' + AuthService.getUserId(),$scope.whatToDo)
+		.then(function(){
+			$scope.whatToDo = WhatDoService.whatToDo;
+		});
 	};
 
 	$scope.showLoginModal = false;
 	$scope.loginModal = function(){
 		$scope.showLoginModal = !$scope.showLoginModal;
+	};
+
+	$scope.showManageModal = false;
+	$scope.manageModal = function(){
+		$scope.showManageModal = !$scope.showManageModal;
 	};
 
 	$scope.hideLogin = function(){
@@ -55,13 +50,14 @@ myApp.controller('MyListController', function ($scope,$http,AuthService) {
 	};
 
 	$scope.logout = function() {
-		var yes = confirm('Are you sure you want to logout?');
-		if (yes) {
+		// var yes = confirm('Are you sure you want to logout?');
+		// if (yes) {
 			AuthService.logout();
 			$scope.isAuthenticated = false;
 			$scope.header = "My List";
 			$scope.whatToDo = "...";
-		}
+			$scope.manageModal();
+		// }
 	};
 
 	angular.element(document).ready(function () {
@@ -70,38 +66,37 @@ myApp.controller('MyListController', function ($scope,$http,AuthService) {
 
 });
 
-// TO-DO : Make this a common controller for both user and global lists
-myApp.controller('AddNewItemMyListModalController', function ($scope,$http,AuthService) {
+myApp.controller('AddNewItemMyListModalController', function ($scope,$http,AuthService,WhatDoService) {
 
-	$scope.newDesc = "";
+	$scope.newWhatToDo = {
+		userId: "",
+		description: "",
+		dateAdded: ""
+	};
 
 	$scope.addNew = function(){
-
-		if ($scope.newDesc.trim() === "") {
-			alert("Please add a description.");
-			$scope.newDesc = "";
-			return;
-		}
 
 		if (!AuthService.isAuthenticated()) {
 			alert("Error! User is not logged in!");
 			return;
 		}
 
-		var today = new Date();
+		$scope.newWhatToDo.userId = AuthService.getUserId();
 
-		var newWhatToDo = {
-			userId: AuthService.getUserId(),
-			description: $scope.newDesc.trim(),
-			dateAdded: today.toISOString()
-		};
-		
-		$http.post('/my-list/add-what-to-do', newWhatToDo)
-		.success(function(data, status, headers, config) {
-			$scope.newDesc = "";
+		WhatDoService.addNewWhatDo('/my-list/add-what-to-do',$scope.newWhatToDo)
+		.then(function(){
+			$scope.newWhatToDo.description = "";
 			$scope.$parent.$parent.addModal();
 		});
-		
 	};
 
+});
+
+myApp.controller('ManageModalController', function ($scope,$http,AuthService,WhatDoService) {
+	$scope.logout = function() {
+		var yes = confirm('Are you sure you want to logout?');
+		if (yes) {
+			$scope.$parent.$parent.logout();
+		}
+	};
 });

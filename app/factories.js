@@ -29,6 +29,53 @@ myApp.factory('AuthService', function ($http,$cookies) {
 
 	return authService;
 
-	
+});
 
+myApp.factory('WhatDoService', function ($http) {
+	var whatDoService = {};
+
+	whatDoService.addNewWhatDo = function(url,newWhatToDo) {
+
+		if (newWhatToDo.description.trim() === "") {
+			alert("Please add a description.");
+			return;
+		}
+
+		var today = new Date();
+		newWhatToDo.dateAdded = today.toISOString();
+
+		return $http.post(url, newWhatToDo)
+		.success(function(data, status, headers, config) {
+			alert("Successfully added new item!");
+		});
+
+	};
+
+
+
+	whatDoService.getWhatDo = function(url,whatToDo){
+		return $http.get(url).success(function(data) {
+
+			if (data.length > 0){
+
+				var randomIndex = randomInt(0,data.length);
+
+				while (data[randomIndex].description === whatToDo && (data.length > 1)) {
+					randomIndex = randomInt(0,data.length);
+				}
+
+	  	  		whatDoService.whatToDo = data[randomIndex].description;
+
+  	  		} else {
+  	  			whatDoService.whatToDo = "...";
+  	  		}
+  		});
+	};
+
+	var randomInt = function(minNum,maxNum){
+		return Math.floor((Math.random() * (maxNum-minNum))) + minNum;
+	};
+
+
+	return whatDoService;
 });
